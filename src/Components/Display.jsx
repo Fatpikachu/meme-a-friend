@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { IMGUR_ID } from '../config';
+import { fetchComments } from '../Handlers/comments';
 import Comments from './CommentSection';
 
 class Display extends Component{
@@ -11,56 +12,32 @@ class Display extends Component{
   }
 
   componentDidMount(){
-    this.fetchComments(this.props.dataObj.id);
-  }
+    fetchComments(this.props.dataObj.id)
+    .then((res) => {
+      let comments = res.data;
+      console.log('the comments', comments)
+      this.setState({ comments });
+    });
+  };
 
   // shouldComponentUpdate(nextProps, nextState) {
   //   return this.props === nextProps;
   // }
 
-  fetchComments = (id) => {
-    fetch(` https://api.imgur.com/3/gallery/${id}/comments/best`, {
-      headers: {
-        "Authorization": 'Client-ID ' + IMGUR_ID,
-      }
-    })
-    .then((comments) => {
-      return comments.json();
-    })
-    .then((res) => {
-      console.log('fetched comments from imgur: ', res)
-      this.setState({comments: res.data})
-    })
-  }
+  // componentWillReceiveProps({nextProps}) {
+  //   if (this.props !== nextProps) {
+  //     fetchComments(this.props.dataObj.id);
+  //   }
+  // }
 
-  fetchComments = (id) =>
-    new Promise(function(resolve, reject) {
-    fetch(`https://api.imgur.com/3/gallery/${id}/comments/best`,
-    {
-    "headers": {
-    "Authorization": 'Client-ID ' + IMGUR_ID,
-    }
-    }
-    )
-    .then(comments => {
-    return comments.json()
-    })
-    .then((comments) => {
-      console.log('fetched comments from imgur: ', comments.data)
-      this.setState({comments: comments.data}, ()=>{
-        resolve(comments);
-      })
-    })
-    .catch((err) => {
-    console.error(err);
+  componentWillUpdate({nextProps}) {
+    console.log("DOING THIS")
+    fetchComments(this.props.dataObj.id)
+    .then((res) => {
+    let comments = res.data;
+    this.setState({ comments });
     });
-    });
-  
-  componentWillReceiveProps({nextProps}) {
-    if (this.props !== nextProps) {
-      this.fetchComments(this.props.dataObj.id);
     }
-  }
 
 
 
@@ -80,7 +57,7 @@ class Display extends Component{
             return(
               <div>
                 {
-                url.slice(-3) === 'mp4' 
+                url.slice(-3) === 'mp4'
                 ? <video src={url} width='500px' type="video/mp4" autoPlay loop controls/>
                 : <img src={url} width='500px' />
                 }
@@ -91,7 +68,7 @@ class Display extends Component{
           :
             <div>
               {
-              url.slice(-3) === 'mp4' 
+              url.slice(-3) === 'mp4'
               ? <video src={url} width='500px' type="video/mp4" autoPlay loop controls/>
               : <img src={url} width='500px' />
               }
