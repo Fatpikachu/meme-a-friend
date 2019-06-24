@@ -2,8 +2,8 @@ import React from 'react';
 
 const PrevButton = ({prevPage}) => {
   return (
-    <button onClick={prevPage}>
-      Previous
+    <button className='prev-button' onClick={prevPage}>
+      &lt;
     </button>
   )
 }

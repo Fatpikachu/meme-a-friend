@@ -15,67 +15,60 @@ class Display extends Component{
     fetchComments(this.props.dataObj.id)
     .then((res) => {
       let comments = res.data;
-      console.log('the comments', comments)
       this.setState({ comments });
     });
   };
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return this.props === nextProps;
-  // }
 
-  // componentWillReceiveProps({nextProps}) {
-  //   if (this.props !== nextProps) {
-  //     fetchComments(this.props.dataObj.id);
-  //   }
-  // }
-
-  componentWillUpdate({nextProps}) {
-    console.log("DOING THIS")
-    fetchComments(this.props.dataObj.id)
-    .then((res) => {
-    let comments = res.data;
-    this.setState({ comments });
-    });
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps){
+      fetchComments(this.props.dataObj.id)
+        .then((res) => {
+        let comments = res.data;
+        this.setState({ comments });
+        });
     }
+  }
 
 
 
   render(){
-    console.log('the dataOBJ:  ', this.props.dataObj)
     let url = this.props.dataObj.link.replace('gifv', 'mp4');
     return(
       <React.Fragment>
-      <div>
-        <h1>
+        <h3>
           {this.props.dataObj.title}
-        </h1>
+        </h3>
+      <div className='display-container'>
+        <div className='images-container'>
         {
           this.props.dataObj.images
           ? this.props.dataObj.images.map((item) => {
             let url = item.link.replace('gifv', 'mp4')
             return(
-              <div>
+              <div className='display-item'>
                 {
                 url.slice(-3) === 'mp4'
-                ? <video src={url} width='500px' type="video/mp4" autoPlay loop controls/>
-                : <img src={url} width='500px' />
+                ? <video src={url} width='550px' type="video/mp4" autoPlay loop controls/>
+                : <img src={url} width='550px' />
                 }
                 <p>{item.description}</p>
               </div>
             )
           })
           :
-            <div>
+            <div className='display-item'>
               {
               url.slice(-3) === 'mp4'
-              ? <video src={url} width='500px' type="video/mp4" autoPlay loop controls/>
-              : <img src={url} width='500px' />
+              ? <video src={url} width='550px' type="video/mp4" autoPlay loop controls/>
+              : <img src={url} width='550px' />
               }
             </div>
-        }
-      </div>
+          }
+          </div>
+          <div className='comment-title'>Top Comments:</div>
       <Comments commentsArr={this.state.comments}/>
+      </div>
       </React.Fragment>
     )
   }
