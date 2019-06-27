@@ -21,8 +21,14 @@ app.get('/send-text', async (req, res) => {
     body: textMsg,
     to: recipient,
     from: '14159410232'
-  }). then((message)=> console.log('the message sent: ', message.body))
-
+  })
+  // .then((message)=> {
+  //   console.log('the message sent: ', message.body)
+  //   res.status(200).send(message.body);
+  // }).catch((err)=>{
+  //   console.log(err)
+  //   res.status(400).send(err);
+  // })
 })
 
 const server = app.listen(port, () => {
