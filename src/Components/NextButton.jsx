@@ -3,7 +3,7 @@ import React from 'react';
 const NextButton = ({nxtPage}) => {
   return (
     <button className='next-button' onClick={nxtPage}>
-      &gt;
+      Next &gt;
     </button>
   )
 }

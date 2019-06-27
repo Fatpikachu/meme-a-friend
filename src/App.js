@@ -37,14 +37,17 @@ class App extends Component {
   sendText(){
     const { recipient, currData } = this.state;
     fetch(`http://localhost:3008/send-text?recipient=${recipient}&textMsg=${currData.link}`)
-      .then(()=>{
-        this.refs.inputField.value = '';
-        window.alert('imgur link has been sent!')
+      .then((response) => {
+        response.json()
+      // ).then((msg)=>{
+      //   console.log('sent successfuly to recipient: ', msg)
+      //   window.alert('imgur link has been sent!')
+      // })
+      // .catch((err) => {
+      //   window.alert(err)
+      // })
       })
-      .catch((err) => {
-        window.alert(err)
-        console.error(err)
-      })
+    this.refs.inputField.value = '';
   }
 
   prevPage(){
@@ -77,7 +80,8 @@ class App extends Component {
     const { text } = this.state
     return (
       <React.Fragment>
-      <div className='title'> Meme-A-Friend </div>
+        <div className='title-first-letter'>M</div>
+      <div className='title'> eme-a-friend </div>
       <div className='container'>
       <div className='buttons-container'>
         <PreviousButton prevPage={this.prevPage.bind(this)} />
