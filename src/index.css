@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(136, 186, 236);
+  background-color: rgb(108, 111, 114);
 }
 
 code {
@@ -13,25 +13,13 @@ code {
     monospace;
 }
 
-.title-first-letter{
-  display:inline-block;
-  font-size: 120px;
-  font-family: Arial bold;
-  color: white;
-  height: 120px;
-}
 .title{
-  /* position:fixed;
+  position:fixed;
   top: 20px;
-  left: 6px; */
-  display: inline-block;
+  left: 6px;
   font-family: Arial;
-  font-size: 50px;
+  font-size: 60px;
   color: white;
-  height: 100px;
-  vertical-align: top;
-  padding-top: 10px;
-  text-decoration: underline;
 }
 
 .buttons-container{
@@ -44,20 +32,18 @@ input{
   height: 26px;
   width: 150px;
   margin-left: 230px;
-  font-size: 16px;
-  outline: none;
+  font-size: 16px
 }
 
 h3 {
   width: 600px;
-  margin-top: 60px;
+  margin-top: 130px;
   text-align: center;
-  margin-left: 60px;
-  float: left;
+  margin-left: 80px;
 }
 
 .display-container {
-  /* margin-top: 20px; */
+  margin-top: 20px;
   margin-left: 80px;
   overflow: scroll;
   height: 560px;
@@ -69,7 +55,7 @@ h3 {
 .images-container {
   display: grid;
   /* grid-template-rows: */
-  height: 560px;
+  height: 590px;
   overflow: scroll;
   grid-template-columns: 600px;
 
@@ -78,7 +64,8 @@ h3 {
 
 .comment-container{
   height: 500px;
-  width: 620px;
+  width: 600px;
+  /* overflow: scroll; */
   overflow-x: hidden;
   border: solid 6px rgb(37, 37, 44);
   float: right;
@@ -86,13 +73,14 @@ h3 {
   bottom: 5px;
   right: 30px;
   display: grid;
+  grid-template-rows: 50px
 }
 
 .comment{
   /* padding: 30px 0 0 0; */
   padding: 12px 0 12px 8px;
   display: inline-block;
-  border: solid rgb(53, 53, 61);
+  border: solid rgb(44, 44, 53);
   border-width: 2px 0 2px 0;
   color: white;
 }
@@ -103,7 +91,6 @@ h3 {
 
 .description {
   width: 700px;
-  text-align: center;
 }
 
 .comment-title{
@@ -115,33 +102,29 @@ h3 {
 
 button {
   background: #ffffff;
-  background-image: -webkit-linear-gradient(top, rgb(92, 92, 104), rgb(38, 38, 43));
-  background-image: -moz-linear-gradient(top, rgb(92, 92, 104), rgb(38, 38, 43));
-  background-image: -ms-linear-gradient(top, rgb(92, 92, 104), rgb(38, 38, 43));
-  background-image: -o-linear-gradient(top, rgb(92, 92, 104), rgb(38, 38, 43));
-  background-image: linear-gradient(to top, rgb(92, 92, 104), rgb(38, 38, 43));
-  /* -webkit-border-radius: 26;
-  -moz-border-radius: 26; */
-  /* border-radius: 26px; */
+  background-image: -webkit-linear-gradient(top, #ffffff, #bfdff2);
+  background-image: -moz-linear-gradient(top, #ffffff, #bfdff2);
+  background-image: -ms-linear-gradient(top, #ffffff, #bfdff2);
+  background-image: -o-linear-gradient(top, #ffffff, #bfdff2);
+  background-image: linear-gradient(to bottom, #ffffff, #bfdff2);
+  -webkit-border-radius: 26;
+  -moz-border-radius: 26;
+  border-radius: 26px;
   font-family: Arial;
-  color: white;
+  color: #1f1b1f;
   font-size: 16px;
   padding: 10px 20px 10px 20px;
-  /* border: solid #f4f6f7 2px; */
+  border: solid #f4f6f7 2px;
   text-decoration: none;
   margin: 0 20px 0 20px;
-  outline: none;
-  border: none;
-  display:inline-block;
 }
 
 button:hover {
   background: #b2d7ed;
-  background-image: -webkit-linear-gradient(top, #222425, #0d1012);
-  background-image: -moz-linear-gradient(top, #222425, #0d1012);
-  background-image: -ms-linear-gradient(top, #222425, #0d1012);
-  background-image: -o-linear-gradient(top, #222425, #0d1012);
-  background-image: linear-gradient(to top, #222425, #0d1012);
-  
+  background-image: -webkit-linear-gradient(top, #b2d7ed, #9ecff0);
+  background-image: -moz-linear-gradient(top, #b2d7ed, #9ecff0);
+  background-image: -ms-linear-gradient(top, #b2d7ed, #9ecff0);
+  background-image: -o-linear-gradient(top, #b2d7ed, #9ecff0);
+  background-image: linear-gradient(to bottom, #b2d7ed, #9ecff0);
   text-decoration: none;
 }
