@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { IMGUR_ID } from '../config';
-import { fetchComments } from '../Handlers/comments';
 import Comments from './CommentSection';
 
 class Display extends Component{
@@ -12,21 +10,23 @@ class Display extends Component{
   }
 
   componentDidMount(){
-    fetchComments(this.props.dataObj.id)
-    .then((res) => {
-      let comments = res.data;
-      this.setState({ comments });
-    });
+    fetch(`http://localhost:3008/comments?id=${this.props.dataObj.id}`)
+      .then((response) => 
+        response.json()
+      ).then((comments) => {
+        this.setState({ comments: comments.data });
+      });
   };
 
 
   componentDidUpdate(prevProps) {
     if (this.props !== prevProps){
-      fetchComments(this.props.dataObj.id)
-        .then((res) => {
-        let comments = res.data;
-        this.setState({ comments });
-        });
+      fetch(`http://localhost:3008/comments?id=${this.props.dataObj.id}`)
+      .then((response) => 
+        response.json()
+      ).then((comments) => {
+        this.setState({ comments: comments.data });
+      });
     }
   }
 

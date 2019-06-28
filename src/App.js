@@ -1,7 +1,6 @@
 import React, {ReactDOM, Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { IMGUR_ID } from './config';
 import NextButton from './Components/NextButton';
 import PreviousButton from './Components/PrevButton';
 import Display from './Components/Display';
@@ -20,17 +19,12 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch(`https://api.imgur.com/3/gallery/hot/time/1?showViral=showViral=true&mature=true&album_previews=false`, {
-      headers: {
-        "Authorization": 'Client-ID ' + IMGUR_ID,
-      }
-    })
-    .then((imgData) => {
-      return imgData.json();
-    })
-    .then((res) => {
-      this.setState({allData: res.data, currData: res.data[0]})
-    })
+    fetch('http://localhost:3008/gallery')
+      .then( result => {
+        return result.json()
+      }).then( res => {
+        this.setState({allData: res.data, currData: res.data[0]})
+      })
   }
 
 

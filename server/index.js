@@ -3,32 +3,58 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3008;
 const cors = require('cors');
+const fetch = require('node-fetch');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
 //twilio
 const twilio = require('twilio');
-const { accountSid, authToken } = require('../src/config.js');
-const client = new twilio(accountSid, authToken)
+// const { accountSid, authToken } = require('../src/config');
+const client = new twilio(process.env.accountSid, process.env.authToken)
+// const { IMGUR_ID } = require('../src/config');
 
 
 
 app.get('/send-text', async (req, res) => {
-  const{ recipient, textMsg} = req.query;
+  const { recipient, textMsg} = req.query;
 
   client.messages.create({
     body: textMsg,
     to: recipient,
     from: '14159410232'
   })
-  // .then((message)=> {
-  //   console.log('the message sent: ', message.body)
-  //   res.status(200).send(message.body);
-  // }).catch((err)=>{
-  //   console.log(err)
-  //   res.status(400).send(err);
-  // })
+
+})
+
+app.get('/comments', async (req, res) => {
+  const { id } = req.query;
+  
+  fetch(`https://api.imgur.com/3/gallery/${id}/comments/best`, {
+      headers: {
+        "Authorization": 'Client-ID ' + process.env.IMGUR_ID,
+      }
+    })
+    .then((result) => 
+      result.json()
+    )
+    .then((comments) => 
+      res.json(comments)
+    )
+})
+
+app.get('/gallery', async (req, res) => {
+  fetch(`https://api.imgur.com/3/gallery/hot/time/1?showViral=showViral=true&mature=true&album_previews=false`, {
+      headers: {
+        "Authorization": 'Client-ID ' + process.env.IMGUR_ID,
+      }
+    })
+    .then((imgData) => 
+      imgData.json()
+    )
+    .then((images) => {
+      res.json(images);
+    })
 })
 
 const server = app.listen(port, () => {
