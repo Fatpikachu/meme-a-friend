@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch('http://localhost:3008/gallery')
+    fetch('https://hidden-gorge-50503.herokuapp.com/gallery')
       .then( result => {
         return result.json()
       }).then( res => {
@@ -30,7 +30,7 @@ class App extends Component {
 
   sendText(){
     const { recipient, currData } = this.state;
-    fetch(`http://localhost:3008/send-text?recipient=${recipient}&textMsg=${currData.link}`)
+    fetch(`https://hidden-gorge-50503.herokuapp.com/send-text?recipient=${recipient}&textMsg=${currData.link}`)
       .then((response) => {
         response.json()
       // ).then((msg)=>{

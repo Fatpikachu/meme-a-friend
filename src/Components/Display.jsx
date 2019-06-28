@@ -10,7 +10,7 @@ class Display extends Component{
   }
 
   componentDidMount(){
-    fetch(`http://localhost:3008/comments?id=${this.props.dataObj.id}`)
+    fetch(`https://hidden-gorge-50503.herokuapp.com/comments?id=${this.props.dataObj.id}`)
       .then((response) => 
         response.json()
       ).then((comments) => {
@@ -21,7 +21,7 @@ class Display extends Component{
 
   componentDidUpdate(prevProps) {
     if (this.props !== prevProps){
-      fetch(`http://localhost:3008/comments?id=${this.props.dataObj.id}`)
+      fetch(`https://hidden-gorge-50503.herokuapp.com/comments?id=${this.props.dataObj.id}`)
       .then((response) => 
         response.json()
       ).then((comments) => {
