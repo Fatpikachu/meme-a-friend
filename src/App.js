@@ -20,6 +20,10 @@ class App extends Component {
     }
   }
 
+  componentDidMount(){
+    window.scrollTo(0, 0)
+  }
+  
   componentWillMount() {
     fetch('https://hidden-gorge-50503.herokuapp.com/gallery')
       .then( result => {

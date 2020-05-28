@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Comments from './CommentSection';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPooStorm} from '@fortawesome/free-solid-svg-icons';
 
 class Display extends Component{
   constructor(props){
@@ -9,6 +7,7 @@ class Display extends Component{
     this.state = {
       comments: '',
     }
+    this.myRef = React.createRef()
   }
 
   componentDidMount(){
@@ -30,6 +29,7 @@ class Display extends Component{
         this.setState({ comments: comments.data });
       });
     }
+    this.myRef.current.scrollTo(0, 0);
   }
 
 
@@ -38,7 +38,7 @@ class Display extends Component{
     let url = this.props.dataObj.link.replace('gifv', 'mp4');
     return(
       <React.Fragment>
-        <div className='display-container'>
+        <div className='display-container' ref={this.myRef}>
           <h3>
             {this.props.dataObj.title}
           </h3>

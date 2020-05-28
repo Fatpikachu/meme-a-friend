@@ -124,6 +124,7 @@ h3 {
 .display-container {
   grid-area: display;
   height: 74vh;
+  /* overflow: scroll; */
   overflow: scroll;
   padding: 1.1em 1.5em;
   margin: .6em 1.5em 0 1.1em;
@@ -141,7 +142,8 @@ h3 {
   background-color: var(--black);
   border-radius: 12px;
   color: white;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
+  overflow: scroll;
 }
 
 .comment-title{
