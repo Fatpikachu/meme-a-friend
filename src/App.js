@@ -5,6 +5,8 @@ import NextButton from './Components/NextButton';
 import PreviousButton from './Components/PrevButton';
 import Display from './Components/Display';
 import { FORMERR } from 'dns';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faPooStorm} from '@fortawesome/free-solid-svg-icons';
 
 class App extends Component {
   constructor() {
@@ -33,13 +35,6 @@ class App extends Component {
     fetch(`https://hidden-gorge-50503.herokuapp.com/send-text?recipient=${recipient}&textMsg=${currData.link}`)
       .then((response) => {
         response.json()
-      // ).then((msg)=>{
-      //   console.log('sent successfuly to recipient: ', msg)
-      //   window.alert('imgur link has been sent!')
-      // })
-      // .catch((err) => {
-      //   window.alert(err)
-      // })
       })
     this.refs.inputField.value = '';
   }
@@ -74,23 +69,25 @@ class App extends Component {
     const { text } = this.state
     return (
       <React.Fragment>
-        <div className='title-first-letter'>M</div>
-      <div className='title'> eme-a-friend </div>
-      <div className='container'>
-      <div className='buttons-container'>
-        <PreviousButton prevPage={this.prevPage.bind(this)} />
-        <NextButton nxtPage={this.nxtPage.bind(this)}/>
-        
-          <input placeholder={'Enter phone number'}
-           ref='inputField'
-            onChange={(e)=>{ this.setState({recipient: e.target.value})} }/>
-          <button onClick={this.sendText.bind(this)}>Send To Friend</button>
-        
-      </div>
-      {
-      this.state.currData ? <Display dataObj={this.state.currData} /> : loading
-      }
-      <p className='description'>{this.state.currData.description}</p>
+      <div className='app-container'>
+          <div className='header'>
+            <FontAwesomeIcon className='icon' icon={faPooStorm} />
+            <i class="fas fa-poo-storm"></i>
+            <div className='title-first-letter'>M</div>
+            <div className='title'> eme-a-friend </div>
+          </div>
+        <div className='buttons-container'>
+          <PreviousButton prevPage={this.prevPage.bind(this)} />
+          <NextButton nxtPage={this.nxtPage.bind(this)}/>
+            <input placeholder={'Enter phone number'}
+            ref='inputField'
+              onChange={(e)=>{ this.setState({recipient: e.target.value})} }/>
+            <button className='send' onClick={this.sendText.bind(this)}>Send To Friend</button>
+        </div>
+        {
+        this.state.currData ? <Display dataObj={this.state.currData} /> : loading
+        }
+        <p className='description'>{this.state.currData.description}</p>
       </div>
       </React.Fragment>
     );

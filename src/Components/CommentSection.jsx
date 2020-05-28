@@ -5,6 +5,9 @@ const CommentSection = ({commentsArr}) => {
   return (
     commentsArr   
     ? <div className='comment-container'>
+      {/* <div className='top-comment-wrap'> */}
+        <div className='comment-title'>Top Comments:</div>
+      {/* </div> */}
       {
         commentsArr.map((comment) => {
           if(comment.comment.match(/\.(jpeg|jpg|gif|png)$/)){

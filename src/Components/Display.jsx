@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Comments from './CommentSection';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faPooStorm} from '@fortawesome/free-solid-svg-icons';
 
 class Display extends Component{
   constructor(props){
@@ -36,11 +38,10 @@ class Display extends Component{
     let url = this.props.dataObj.link.replace('gifv', 'mp4');
     return(
       <React.Fragment>
-        <h3>
-          {this.props.dataObj.title}
-        </h3>
-      <div className='display-container'>
-        <div className='images-container'>
+        <div className='display-container'>
+          <h3>
+            {this.props.dataObj.title}
+          </h3>
         {
           this.props.dataObj.images
           ? this.props.dataObj.images.map((item) => {
@@ -66,9 +67,7 @@ class Display extends Component{
             </div>
           }
           </div>
-          <div className='comment-title'>Top Comments:</div>
       <Comments commentsArr={this.state.comments}/>
-      </div>
       </React.Fragment>
     )
   }
