@@ -66,6 +66,11 @@ class Display extends Component{
               }
             </div>
           }
+          <p className='description'>{
+          this.props.dataObj.description
+          ? this.props.dataObj.description
+          : ''
+          }</p>
           </div>
       <Comments commentsArr={this.state.comments}/>
       </React.Fragment>

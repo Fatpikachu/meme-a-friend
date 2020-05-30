@@ -1,7 +1,7 @@
 :root {
-  --blue: #3c69ff;
-  --gray: #2c2f34;
-  --black: #141518;
+  --blue: #5a73c7;
+  --gray: #41454d;
+  --black: #242526;
 }
 
 body {
@@ -20,15 +20,15 @@ code {
 
 .app-container{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: .1fr .1fr .8fr;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: .13fr .13fr .6fr;
   grid-template-areas:
-    "header header"
-    "buttons buttons"
-    "display comments";
+    "header header header header header header"
+    ". . paginate paginate send-to send-to"
+    "display display display comments comments comments";
   background-color: var(--black);
-  /* background-color: white; */
 }
+
 
 .header{
   grid-area: header;
@@ -38,14 +38,16 @@ code {
 
 .icon{
   color: var(--blue);
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .title-first-letter{
   display:inline-block;
-  font-size: 4em;
+  font-size: 3.5em;
   font-family: Arial bold;
   color: white;
+  align-items: center;
+  margin: 10px 0px 10px 10px;
 }
 .title{
   display: inline-block;
@@ -53,20 +55,24 @@ code {
   font-size: 1em;
   color: white;
   vertical-align: top;
-  padding-top: 15px;
+  padding-top: 20px;
   text-decoration: underline var(--blue);
 }
 
-.buttons-container{
-  grid-area: buttons;
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 1fr;
-  grid-template-areas: 
-    ". . . prev next . input-num send";
-  justify-items: center;
-  align-items: center;
-}
+
+  .send-to{
+    grid-area: send-to;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .paginate {
+    grid-area: paginate;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 
 
 .prev-button{
@@ -82,7 +88,7 @@ code {
     border-radius: 12px;
     color: white;
     background-color: var(--black);
-    border: solid white 2px;
+    border: solid white 1px;
     outline: none;
 }
 
@@ -91,30 +97,57 @@ input{
   outline: none;
   font-size: .9em;
   padding: 8px 10px;
-  background-color: rgb(205, 203, 203);
-  border: 0px solid
+  background-color: rgb(210, 210, 210);
+  border: 0px;
+  align-self: center;
+  justify-self: center;
+  color: var(--blue);
 }
 
 input:focus{
   background-color: white;
 }
 
+input:focus::placeholder {
+  color: transparent;
+}
+
+::placeholder { 
+  color: rgb(101, 100, 100);
+}
+
+
 .send{
   grid-area: send;
   padding: 7px 12px;
   font-size: 1em;
+  font-weight: 600;
   border-radius: 12px;
-  color: white;
-  background-color: rgb(63, 136, 85);
+  color: rgb(58, 172, 92);
+  background-color: white;
+  border: 0px solid rgb(58, 172, 92);
+  align-self: center;
+  justify-self: center;
+  outline: none;
 }
 
 .send:hover{
-  background-color: rgb(74, 160, 100);
+  background-color: rgb(58, 172, 92);
+  color: white;
+}
+.send:active{
+  background-color: rgb(35, 97, 54);
+  color: white;
 }
 
 .prev-button:hover, .next-button:hover {
-  background-color: white;
-  color: black;
+  background-color: rgb(111, 109, 109);
+  color: white
+}
+
+.prev-button:active, .next-button:active {
+  background-color: rgb(203, 203, 203);
+  color: white
 }
 
 h3 {
@@ -123,11 +156,10 @@ h3 {
 
 .display-container {
   grid-area: display;
-  height: 74vh;
-  /* overflow: scroll; */
-  overflow: scroll;
+  height: 70vh;
+  overflow: auto;
   padding: 1.1em 1.5em;
-  margin: .6em 1.5em 0 1.1em;
+  margin: .6em 1.5em 2em 1.1em;
   background-color: var(--gray);
   border-radius: 12px;
   color: white;
@@ -136,14 +168,13 @@ h3 {
 .comment-container{
   position: relative;
   grid-area: comments;
-  height: 74vh;
+  height: 70vh;
   padding: 1.1em 1.5em;
-  margin: .6em 1.5em 0 1.1em;
+  margin: .6em 1.5em 2em 1.1em;
   background-color: var(--black);
   border-radius: 12px;
   color: white;
-  /* overflow-y: scroll; */
-  overflow: scroll;
+  overflow: auto;
 }
 
 .comment-title{
@@ -155,26 +186,24 @@ h3 {
   position: sticky;
   top: -.8em;
   text-align: center;
-  z-index: 1;
+  z-index: 2;
   border-bottom: solid 2px grey;
 }
 
 .comment {
-	/* background: #efefef; */
   border-radius: 4px;
   font-size: 1em;
   line-height: 1.3;
   margin: 1em .5em;
   padding: 15px;
   position: relative;
-  /* color: black; */
-  background: rgb(101, 100, 100);
+  background: rgb(111, 109, 109);
   color: white;
 }
 
 .comment::after {
   border-left: 20px solid transparent;
-  border-bottom: 20px solid rgb(101, 100, 100);
+  border-bottom: 20px solid rgb(111, 109, 109);
   left: -18px;
   content: "";
   position: absolute;
@@ -183,4 +212,91 @@ h3 {
 
 .comment-gifs{
   max-height: 9em;
+}
+
+.top-strip{
+  background: rgba(135, 134, 134, 0.6);
+  height: 8vh;
+  padding-top: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: var(--blue);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3357ce; 
+}
+
+@media (max-width: 550px) {
+  .app-container{
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr auto 1fr auto;
+    grid-template-areas:
+      "header"
+      "paginate"
+      "display"
+      "send-to"
+      "comments"
+  }
+
+  .display-container{
+    width: auto;
+    min-height: 70vh;
+    height: auto;
+  }
+
+  .comment-container{
+    width: auto;
+    height: auto;
+  }
+
+  video, img{
+    max-width:100%;
+  }
+  
+  .paginate{
+    position: sticky;
+    top: -0.8em;
+    z-index: 5;
+  }
+
+  .send-to{
+    position: fixed;
+    bottom: 0px;
+    z-index: 5;
+    background: rgba(135, 134, 134, 0.6);
+    width: 100%;
+    padding: .8em;
+  }
+}
+
+@media (hover: none) {
+  .prev-button:hover, .next-button:hover {
+    background-color: var(--black);
+    color: white;
+  }
+  .prev-button:active, .next-button:active {
+    background-color: white;
+    color: var(--black);
+  }
+
+  .send:hover{
+    background-color: white;
+    color:  rgb(58, 172, 92);
+  }
+
+  .send:active{
+    background-color: rgb(58, 172, 92);
+    color: white;
+  }
 }
