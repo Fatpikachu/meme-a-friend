@@ -38,7 +38,7 @@ class App extends Component {
 
 
   componentWillMount() {
-    fetch('https://hidden-gorge-50503.herokuapp.com/gallery')
+    fetch('https://meme-a-friend-server.herokuapp.com/gallery')
       .then( result => {
         return result.json()
       }).then( res => {
@@ -52,7 +52,7 @@ class App extends Component {
 
   sendText(){
     const { recipient, currData } = this.state;
-    fetch(`https://hidden-gorge-50503.herokuapp.com/send-text?recipient=${recipient}&textMsg=${currData.link}`)
+    fetch(`https://meme-a-friend-server.herokuapp.com/send-text?recipient=${recipient}&textMsg=${currData.link}`)
       .then((response) => {
         if(response.status === 200){
         window.alert('WOW! you actually sent something to a friend, Thanks for trying it out!')
