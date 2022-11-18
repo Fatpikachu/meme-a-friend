@@ -14,7 +14,7 @@
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.8.6",
-    "react-scripts": "^3.4.1",
+    "react-scripts": "^5.0.1",
     "smtp-server": "^3.5.0",
     "twilio": "^3.32.0"
   },
